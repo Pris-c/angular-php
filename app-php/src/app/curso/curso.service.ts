@@ -22,16 +22,18 @@ export class CursoService {
 
   //Obter todos os cursos
   obterCursos(): Observable<Curso[]>{
-    console.log('call selecao service');
+    console.log('call selecao service');                  //teste
     return this.http.get(this.url + "listar.php").pipe(
-      map((res) => {
-        console.log('list: ' + res);     //modificado para teste
+      map((res: any) => {
+        console.log('list: ' + res);                     //teste
         this.vetor = res['cursos'];
         return this.vetor;
         })
     ) 
   } 
 
+
+  /*
   //Cadastrar curso
   cadastrarCurso(c: Curso): Observable<Curso[]>{
     return this.http.post(this.url + 'cadastrar', {cursos: c})
@@ -44,7 +46,6 @@ export class CursoService {
 
 
 //Remover curso CAPGGEMINI
-/*
 removerCurso(c: Curso): Observable<Curso[]>{
 
   const params = new HttpParams().set("idCurso", c.idCurso.toString());
@@ -60,7 +61,7 @@ removerCurso(c: Curso): Observable<Curso[]>{
 
   }))
 }
-*/
+
 
 
 //Remover Curso - modificado
@@ -80,7 +81,7 @@ removerCurso(c: Curso): Observable<Curso[]>{
 
   }))
 }
-
+*/
 
 
 

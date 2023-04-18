@@ -49,7 +49,6 @@ export class CursoComponent implements OnInit {
   }
 
   
-
   //Alterar
   alterar(): void{
     alert("Alterar");
@@ -67,7 +66,7 @@ export class CursoComponent implements OnInit {
         }
       );
     }
-    */
+    
 
   //Remover
   remover(){
@@ -89,6 +88,6 @@ export class CursoComponent implements OnInit {
     this.curso.valorCurso = c.valorCurso;
 
   }
-
+*/
 
 }
