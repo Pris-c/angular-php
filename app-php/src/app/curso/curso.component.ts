@@ -44,9 +44,25 @@ export class CursoComponent implements OnInit {
 
 
   //Cadastrar
-  cadastro(): void {
-    alert("Cadastro");
+  cadastro(){
+    this.curso_service.cadastrarCurso(this.curso).subscribe(
+      (res: Curso[]) => {
+
+        //Adicionando dados ao vetor
+        this.vetor = res;
+
+        //Limpar os atributos
+        this.curso.nomeCurso = "";
+        this.curso.valorCurso = 0;
+
+        //Atualizar listagem de cursos
+        this.selecao();
+      } 
+    );
   }
+
+
+
 
   
   //Alterar
@@ -55,20 +71,20 @@ export class CursoComponent implements OnInit {
   }
 
 
-    /*
-    Remover - CAPGEMINI
-    remover(){
+    //Remover - CAPGEMINI
+    /*remover(){
       this.curso_service.removerCurso(this.curso).subscribe(
+      
         (res : Curso[]) => {
           this.vetor = res;
-          this.curso.nomeCurso = null;
-          this.curso.valorCurso = null;
+          this.curso.nomeCurso = "";
+          this.curso.valorCurso = 0;
         }
       );
-    }
+    }*/
     
 
-  //Remover
+  /*Remover
   remover(){
     this.curso_service.removerCurso(this.curso).subscribe(
       (res : Curso[]) => {
@@ -80,6 +96,7 @@ export class CursoComponent implements OnInit {
       }
     );
   }
+  */
 
   //Selecionar um curso especifico
   selecionarCurso(c: Curso){
@@ -88,6 +105,6 @@ export class CursoComponent implements OnInit {
     this.curso.valorCurso = c.valorCurso;
 
   }
-*/
+
 
 }

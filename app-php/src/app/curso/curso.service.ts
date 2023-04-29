@@ -20,31 +20,27 @@ export class CursoService {
    //Construtor
   constructor(private http: HttpClient) { }
 
-  //Obter todos os cursos
-  obterCursos(): Observable<Curso[]>{
-    console.log('call selecao service');                  //teste
-    return this.http.get(this.url + "listar.php").pipe(
-      map((res: any) => {
-        console.log('list: ' + res);                     //teste
-        this.vetor = res['cursos'];
-        return this.vetor;
-        })
-    ) 
-  } 
+ //FACILITADOR CAP
+  obterCursos():Observable<Curso[]>{   
+    return this.http.get(this.url+"listar")   
+    .pipe( map((res:any) =>{    
+       this.vetor = res; // remover o res['curso']
+       return this.vetor;
+      }))
+    }  
 
-
-  /*
+  
   //Cadastrar curso
   cadastrarCurso(c: Curso): Observable<Curso[]>{
     return this.http.post(this.url + 'cadastrar', {cursos: c})
-    .pipe(map((res) => {
+    .pipe(map((res: any) => {
       console.log('push: ' + res);        //modificado para teste
-      //this.vetor.push(res['cursos']);
+      this.vetor.push(res);
       return this.vetor;
     }))
   }
 
-
+/*
 //Remover curso CAPGGEMINI
 removerCurso(c: Curso): Observable<Curso[]>{
 
@@ -84,6 +80,5 @@ removerCurso(c: Curso): Observable<Curso[]>{
 */
 
 
-
-
 }
+

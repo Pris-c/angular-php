@@ -2,7 +2,7 @@
 
 //Incluir a conexao
     include("conexao.php");
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}"); // Avoid CORS issue
+    //header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}"); // Avoid CORS issue
 
 //SQL
     $sql = "SELECT * FROM cursos";
@@ -27,8 +27,9 @@
 
 //JSON
 
-    json_encode(['cursos' => $cursos]);     //cria JSON
+    // json_encode(['cursos' => $cursos]);     //cria JSON
+    echo json_encode($cursos);
 
-    var_dump($cursos); //- Listar
+    //var_dump($cursos); //- Listar
 
 ?>
