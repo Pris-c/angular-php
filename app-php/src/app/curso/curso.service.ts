@@ -32,22 +32,28 @@ export class CursoService {
   
   //Cadastrar curso
   cadastrarCurso(c: Curso): Observable<Curso[]>{
-    return this.http.post(this.url + 'cadastrar', {cursos: c})
-    .pipe(map((res: any) => {
+    console.log("Em curso.service.ts cadastrarCurso: " + c);
+    console.log(c);
+
+    
+    return this.http.post(this.url+"cadastrar", {cursos: c})
+    .pipe( map((res:any) => {
+
       console.log('push: ' + res);        //modificado para teste
+
       this.vetor.push(res);
       return this.vetor;
     }))
   }
 
-/*
+
 //Remover curso CAPGGEMINI
 removerCurso(c: Curso): Observable<Curso[]>{
 
   const params = new HttpParams().set("idCurso", c.idCurso.toString());
 
   return this.http.delete(this.url + 'excluir', {params: params})
-  .pipe(map((res) =>  {
+  .pipe(map((res: any) =>  {
     const filtro = this.vetor.filter((curso) => {
       return +curso['idCurso'] != +c.idCurso;
     });
@@ -59,7 +65,7 @@ removerCurso(c: Curso): Observable<Curso[]>{
 }
 
 
-
+/*
 //Remover Curso - modificado
 removerCurso(c: Curso): Observable<Curso[]>{
 

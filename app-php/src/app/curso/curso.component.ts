@@ -19,6 +19,7 @@ export class CursoComponent implements OnInit {
   //Objeto da Classe Curso
   curso = new Curso();
 
+  
   //Construtor
   constructor(
     //private http: HttpClient,
@@ -45,6 +46,8 @@ export class CursoComponent implements OnInit {
 
   //Cadastrar
   cadastro(){
+    console.log("Em curso.componente cadastro() " + "cursoNome: " + this.curso.nomeCurso + " valorCurso:" + this.curso.valorCurso )
+    
     this.curso_service.cadastrarCurso(this.curso).subscribe(
       (res: Curso[]) => {
 
@@ -72,17 +75,17 @@ export class CursoComponent implements OnInit {
 
 
     //Remover - CAPGEMINI
-    /*remover(){
+    remover(){
       this.curso_service.removerCurso(this.curso).subscribe(
-      
         (res : Curso[]) => {
           this.vetor = res;
           this.curso.nomeCurso = "";
           this.curso.valorCurso = 0;
         }
       );
-    }*/
-    
+    }
+
+     
 
   /*Remover
   remover(){

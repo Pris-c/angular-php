@@ -3,11 +3,13 @@
 //Incluir conexao
     include("conexao.php");
 
+
 //Obter dados
     $obterDados = file_get_contents("php://input");
+    
 
 //Extrair os dados do JSON
-    $extrair = json_decode($obterDados);
+    $extrair = json_decode($obterDados, true);
 
 //Separar os dados do JSON
     $nomeCurso = $extrair-> cursos-> nomeCurso;   //cursos é o nome do JSON definido com json_encode
@@ -23,6 +25,7 @@
         'valorCurso' => $valorCurso
     ]
 
-    json_encode(['curso'=> $curso]);
+    //json_encode(['curso'=> $curso]);
+    echo json_encode($curso);
 
 ?>

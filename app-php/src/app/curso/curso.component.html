@@ -1,7 +1,23 @@
-<!--button (click)="cadastro()">Cadastrar</button>
-<button (click)="selecao()">Selecionar</button>
-<button (click)="alterar()">Alterar</button>
-<button (click)="remover()">Excluir</button-->
+
+
+
+<form (ngSubmit)="cadastro()">
+<label for="nomeCurso"  >Curso </label>
+<input name="nomeCurso" [(ngModel)]="curso.nomeCurso" type="text">
+<br>
+<label for="valorCurso" >Valor </label>
+<input  name="valorCurso" [(ngModel)]="curso.valorCurso" type="number">
+<button type="submit">Cadastrar</button>
+</form>  
+
+
+
+
+<section>
+    <!--button (click)="selecao()">Selecionar</button-->
+    <button (click)="alterar()">Alterar</button>
+    <button (click)="remover()">Excluir</button>
+</section>
 
 
 <table border="1">
