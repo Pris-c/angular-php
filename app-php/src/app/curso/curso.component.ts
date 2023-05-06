@@ -49,10 +49,10 @@ export class CursoComponent implements OnInit {
     console.log("Em curso.componente cadastro() " + "cursoNome: " + this.curso.nomeCurso + " valorCurso:" + this.curso.valorCurso )
     
     this.curso_service.cadastrarCurso(this.curso).subscribe(
-      (res: Curso[]) => {
+      (res: Curso) => {
 
         //Adicionando dados ao vetor
-        this.vetor = res;
+        //this.vetor = res;
 
         //Limpar os atributos
         this.curso.nomeCurso = "";

@@ -31,7 +31,7 @@ export class CursoService {
 
   
   //Cadastrar curso
-  cadastrarCurso(c: Curso): Observable<Curso[]>{
+  /*cadastrarCurso(c: Curso): Observable<Curso[]>{
     console.log("Em curso.service.ts cadastrarCurso: " + c);
     console.log(c);
 
@@ -44,7 +44,11 @@ export class CursoService {
       this.vetor.push(res);
       return this.vetor;
     }))
-  }
+  }*/
+
+  cadastrarCurso(curso:Curso):Observable<Curso>{
+    return this.http.post<Curso>(this.url+'cadastrar',curso)
+    }
 
 
 //Remover curso CAPGGEMINI
