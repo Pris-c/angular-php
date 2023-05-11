@@ -51,9 +51,6 @@ export class CursoComponent implements OnInit {
     this.curso_service.cadastrarCurso(this.curso).subscribe(
       (res: Curso) => {
 
-        //Adicionando dados ao vetor
-        //this.vetor = res;
-
         //Limpar os atributos
         this.curso.nomeCurso = "";
         this.curso.valorCurso = 0;
@@ -64,42 +61,49 @@ export class CursoComponent implements OnInit {
     );
   }
 
-
-
-
   
   //Alterar
-  alterar(): void{
-    alert("Alterar");
-  }
+  alterar(){
+    this.curso_service.atualizarCurso(this.curso).subscribe(    //subscribe: quando há informação de retorno
+      (res: Curso[]) =>  {
+        
+        //Atualiza vetor
+        //this.vetor = res;
 
+        //Limpa valores do objeto
+        this.curso.nomeCurso = "";
+        this.curso.valorCurso = 0;
 
-    //Remover - CAPGEMINI
-    remover(){
-      this.curso_service.removerCurso(this.curso).subscribe(
-        (res : Curso[]) => {
-          this.vetor = res;
-          this.curso.nomeCurso = "";
-          this.curso.valorCurso = 0;
-        }
-      );
-    }
-
-     
-
-  /*Remover
-  remover(){
-    this.curso_service.removerCurso(this.curso).subscribe(
-      (res : Curso[]) => {
-        this.vetor = res;
-
-        this.curso.nomeCurso = "vazio";
-        this.curso.valorCurso = -1;
+        //Atualiza listagem
+        this.selecao();
 
       }
     );
   }
-  */
+
+
+  //Remover - CAPGEMINI
+   /*remover(){
+      this.curso_service.removerCurso(this.curso).subscribe(
+        (res: Curso[]) => {
+          //this.vetor = res;
+          this.curso.nomeCurso = "";
+          this.curso.valorCurso = 0;
+        }
+      );
+    }*/
+
+     
+
+//Remover - Facilitador CAP
+remover(){
+  this.curso_service.removerCurso(this.curso).subscribe(
+  (res : any) => {
+    this.curso.nomeCurso = "";
+    this.curso.valorCurso = 0;
+    this.selecao();
+  });
+}
 
   //Selecionar um curso especifico
   selecionarCurso(c: Curso){

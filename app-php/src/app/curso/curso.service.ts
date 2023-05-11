@@ -20,75 +20,75 @@ export class CursoService {
    //Construtor
   constructor(private http: HttpClient) { }
 
- //FACILITADOR CAP
+ 
+ 
+  //FACILITADOR CAP
   obterCursos():Observable<Curso[]>{   
     return this.http.get(this.url+"listar")   
     .pipe( map((res:any) =>{    
-       this.vetor = res; // remover o res['curso']
+       this.vetor = res; 
        return this.vetor;
       }))
     }  
 
   
-  //Cadastrar curso
-  /*cadastrarCurso(c: Curso): Observable<Curso[]>{
-    console.log("Em curso.service.ts cadastrarCurso: " + c);
-    console.log(c);
-
-    
-    return this.http.post(this.url+"cadastrar", {cursos: c})
-    .pipe( map((res:any) => {
-
-      console.log('push: ' + res);        //modificado para teste
-
-      this.vetor.push(res);
-      return this.vetor;
-    }))
-  }*/
-
+  //FACILITADOR CAP
   cadastrarCurso(curso:Curso):Observable<Curso>{
     return this.http.post<Curso>(this.url+'cadastrar',curso)
     }
 
 
 //Remover curso CAPGGEMINI
-removerCurso(c: Curso): Observable<Curso[]>{
+/*removerCurso(curso: Curso): Observable<Curso[]>{
+  //const id = curso.idCurso.toString();
+  //const params = new HttpParams().set("idCurso",  id);
+  //console.log("id: type="  + typeof(id) + " valor=" + id);
+  
+  const params = new HttpParams().set("idCurso", parseInt(curso.idCurso.toString()));
+  console.log("params: type= "  + typeof(params) + " valor=" + params);
+  
+  
+ 
+  return this.http.delete<Curso>(this.url + 'excluir', {params: params})
+  .pipe( map ((res) =>  { const filtro = this.vetor.filter((curso) => { return curso['idCurso'] != curso.idCurso; });
 
-  const params = new HttpParams().set("idCurso", c.idCurso.toString());
+    return this.vetor = filtro;
 
-  return this.http.delete(this.url + 'excluir', {params: params})
-  .pipe(map((res: any) =>  {
-    const filtro = this.vetor.filter((curso) => {
-      return +curso['idCurso'] != +c.idCurso;
+
+  }))?
+}*/
+
+removerCurso(curso: Curso): Observable<Curso>{
+  const url = `${this.url}excluir?idCurso=${curso.idCurso}`
+  console.log(url);
+  return this.http.delete<Curso>(url);
+}
+
+
+
+
+//Alterar curso
+atualizarCurso(curso: Curso): Observable<Curso[]>{
+
+  //Percorrer o vetor para encontrar o id do curso alterado
+  return this.http.put<Curso>(this.url + 'alterar', curso)
+  .pipe(map((res: Curso) => {
+    const cursoAlterado = this.vetor.find((item) => {
+
+      return  +item['idCurso'] === +['idCurso'];
     });
 
-    return this.vetor = filtro;
+    //Alterar o valor do vetor local
+    if(cursoAlterado){
+      cursoAlterado['nomeCurso'] = curso['nomeCurso'];
+      cursoAlterado['valorCurso'] = curso['valorCurso'];
+    }
 
-
+    //Retorno
+    return this.vetor;
   }))
+
 }
-
-
-/*
-//Remover Curso - modificado
-removerCurso(c: Curso): Observable<Curso[]>{
-
-  const params = new HttpParams().set("idCurso", c?.idCurso?.toString() ?? 'nothing');
-
-    return this.http.delete(this.url + 'excluir', {params: params})
-    .pipe(map((res) =>  {
-      const filtro = this.vetor.filter((curso) => {
-        const auxIdCurso = c?.idCurso ?? '-1';
-        const auxCurso = curso['idCurso'] ?? '-1';
-        return +auxCurso != +auxIdCurso;
-      });
-
-    return this.vetor = filtro;
-
-  }))
-}
-*/
-
 
 }
 
